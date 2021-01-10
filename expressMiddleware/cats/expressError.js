@@ -1,25 +1,17 @@
-const express = require("express")
-const app = express();
-const catsRoutes = require("./routes/cats")
-const ExpressError = require("./expressError")
+/** ExpressError extends the normal JS error so we can easily
+ *  add a status when we make an instance of it.
+ *
+ *  The error-handling middleware will return this.
+ */
 
-app.use(express.json());
-app.use("/cats", catsRoutes);
+class ExpressError extends Error {
+  constructor(message, status) {
+    super();
+    this.message = message;
+    this.status = status;
+    console.error(this.stack);
+  }
+}
 
-/** 404 handler */
 
-app.use(function(req, res, next) {
-  return new ExpressError("Not Found", 404);
-});
-
-/** general error handler */
-
-app.use((err, req, res, next) => {
-  res.status(err.status || 500);
-
-  return res.json({
-    error: err.message,
-  });
-});
-
-module.exports = app;
+module.exports = ExpressError;
