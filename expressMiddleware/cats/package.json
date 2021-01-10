@@ -1,5 +1,5 @@
 {
-  "name": "supertest",
+  "name": "cats",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -9,5 +9,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "supertest": "^6.0.1"
+  }
 }
